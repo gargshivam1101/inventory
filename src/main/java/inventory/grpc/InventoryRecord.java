@@ -21,8 +21,8 @@ private static final long serialVersionUID = 0L;
     bIN_ = "";
     lOCATION_ = "";
     uNIT_ = "";
-    qTY_ = 0;
-    rEORDERQTY_ = 0;
+    qTY_ = 0F;
+    rEORDERQTY_ = 0F;
     cOST_ = 0F;
     iNVENTORYVALUE_ = 0F;
     rEORDER_ = false;
@@ -82,14 +82,14 @@ private static final long serialVersionUID = 0L;
             uNIT_ = s;
             break;
           }
-          case 48: {
+          case 53: {
 
-            qTY_ = input.readInt32();
+            qTY_ = input.readFloat();
             break;
           }
-          case 56: {
+          case 61: {
 
-            rEORDERQTY_ = input.readInt32();
+            rEORDERQTY_ = input.readFloat();
             break;
           }
           case 69: {
@@ -310,20 +310,20 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int QTY_FIELD_NUMBER = 6;
-  private int qTY_;
+  private float qTY_;
   /**
-   * <code>int32 QTY = 6;</code>
+   * <code>float QTY = 6;</code>
    */
-  public int getQTY() {
+  public float getQTY() {
     return qTY_;
   }
 
   public static final int REORDER_QTY_FIELD_NUMBER = 7;
-  private int rEORDERQTY_;
+  private float rEORDERQTY_;
   /**
-   * <code>int32 REORDER_QTY = 7;</code>
+   * <code>float REORDER_QTY = 7;</code>
    */
-  public int getREORDERQTY() {
+  public float getREORDERQTY() {
     return rEORDERQTY_;
   }
 
@@ -383,11 +383,11 @@ private static final long serialVersionUID = 0L;
     if (!getUNITBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, uNIT_);
     }
-    if (qTY_ != 0) {
-      output.writeInt32(6, qTY_);
+    if (qTY_ != 0F) {
+      output.writeFloat(6, qTY_);
     }
-    if (rEORDERQTY_ != 0) {
-      output.writeInt32(7, rEORDERQTY_);
+    if (rEORDERQTY_ != 0F) {
+      output.writeFloat(7, rEORDERQTY_);
     }
     if (cOST_ != 0F) {
       output.writeFloat(8, cOST_);
@@ -422,13 +422,13 @@ private static final long serialVersionUID = 0L;
     if (!getUNITBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, uNIT_);
     }
-    if (qTY_ != 0) {
+    if (qTY_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(6, qTY_);
+        .computeFloatSize(6, qTY_);
     }
-    if (rEORDERQTY_ != 0) {
+    if (rEORDERQTY_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(7, rEORDERQTY_);
+        .computeFloatSize(7, rEORDERQTY_);
     }
     if (cOST_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
@@ -468,10 +468,14 @@ private static final long serialVersionUID = 0L;
         .equals(other.getLOCATION());
     result = result && getUNIT()
         .equals(other.getUNIT());
-    result = result && (getQTY()
-        == other.getQTY());
-    result = result && (getREORDERQTY()
-        == other.getREORDERQTY());
+    result = result && (
+        java.lang.Float.floatToIntBits(getQTY())
+        == java.lang.Float.floatToIntBits(
+            other.getQTY()));
+    result = result && (
+        java.lang.Float.floatToIntBits(getREORDERQTY())
+        == java.lang.Float.floatToIntBits(
+            other.getREORDERQTY()));
     result = result && (
         java.lang.Float.floatToIntBits(getCOST())
         == java.lang.Float.floatToIntBits(
@@ -504,9 +508,11 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + UNIT_FIELD_NUMBER;
     hash = (53 * hash) + getUNIT().hashCode();
     hash = (37 * hash) + QTY_FIELD_NUMBER;
-    hash = (53 * hash) + getQTY();
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getQTY());
     hash = (37 * hash) + REORDER_QTY_FIELD_NUMBER;
-    hash = (53 * hash) + getREORDERQTY();
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getREORDERQTY());
     hash = (37 * hash) + COST_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getCOST());
@@ -659,9 +665,9 @@ private static final long serialVersionUID = 0L;
 
       uNIT_ = "";
 
-      qTY_ = 0;
+      qTY_ = 0F;
 
-      rEORDERQTY_ = 0;
+      rEORDERQTY_ = 0F;
 
       cOST_ = 0F;
 
@@ -773,10 +779,10 @@ private static final long serialVersionUID = 0L;
         uNIT_ = other.uNIT_;
         onChanged();
       }
-      if (other.getQTY() != 0) {
+      if (other.getQTY() != 0F) {
         setQTY(other.getQTY());
       }
-      if (other.getREORDERQTY() != 0) {
+      if (other.getREORDERQTY() != 0F) {
         setREORDERQTY(other.getREORDERQTY());
       }
       if (other.getCOST() != 0F) {
@@ -1162,54 +1168,54 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int qTY_ ;
+    private float qTY_ ;
     /**
-     * <code>int32 QTY = 6;</code>
+     * <code>float QTY = 6;</code>
      */
-    public int getQTY() {
+    public float getQTY() {
       return qTY_;
     }
     /**
-     * <code>int32 QTY = 6;</code>
+     * <code>float QTY = 6;</code>
      */
-    public Builder setQTY(int value) {
+    public Builder setQTY(float value) {
       
       qTY_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 QTY = 6;</code>
+     * <code>float QTY = 6;</code>
      */
     public Builder clearQTY() {
       
-      qTY_ = 0;
+      qTY_ = 0F;
       onChanged();
       return this;
     }
 
-    private int rEORDERQTY_ ;
+    private float rEORDERQTY_ ;
     /**
-     * <code>int32 REORDER_QTY = 7;</code>
+     * <code>float REORDER_QTY = 7;</code>
      */
-    public int getREORDERQTY() {
+    public float getREORDERQTY() {
       return rEORDERQTY_;
     }
     /**
-     * <code>int32 REORDER_QTY = 7;</code>
+     * <code>float REORDER_QTY = 7;</code>
      */
-    public Builder setREORDERQTY(int value) {
+    public Builder setREORDERQTY(float value) {
       
       rEORDERQTY_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 REORDER_QTY = 7;</code>
+     * <code>float REORDER_QTY = 7;</code>
      */
     public Builder clearREORDERQTY() {
       
-      rEORDERQTY_ = 0;
+      rEORDERQTY_ = 0F;
       onChanged();
       return this;
     }

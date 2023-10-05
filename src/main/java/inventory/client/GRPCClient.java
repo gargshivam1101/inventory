@@ -14,7 +14,7 @@ public class GRPCClient {
   ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
 
   inventoryBlockingStub inventoryStub = inventoryGrpc.newBlockingStub(channel);
-  SearchByIDRequest request = SearchByIDRequest.newBuilder().setSKU("1").build();
+  SearchByIDRequest request = SearchByIDRequest.newBuilder().setSKU("PW98762").build();
   InventoryRecord resp = inventoryStub.searchByID(request);
   System.out.println(resp);
   }

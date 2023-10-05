@@ -36,8 +36,8 @@ public final class Inventory {
       "\n\025InventoryRecord.proto\022\tinventory\"\272\001\n\017I" +
       "nventoryRecord\022\013\n\003SKU\030\001 \001(\t\022\023\n\013DESCRIPTI" +
       "ON\030\002 \001(\t\022\013\n\003BIN\030\003 \001(\t\022\020\n\010LOCATION\030\004 \001(\t\022" +
-      "\014\n\004UNIT\030\005 \001(\t\022\013\n\003QTY\030\006 \001(\005\022\023\n\013REORDER_QT" +
-      "Y\030\007 \001(\005\022\014\n\004COST\030\010 \001(\002\022\027\n\017INVENTORY_VALUE" +
+      "\014\n\004UNIT\030\005 \001(\t\022\013\n\003QTY\030\006 \001(\002\022\023\n\013REORDER_QT" +
+      "Y\030\007 \001(\002\022\014\n\004COST\030\010 \001(\002\022\027\n\017INVENTORY_VALUE" +
       "\030\t \001(\002\022\017\n\007REORDER\030\n \001(\010\" \n\021SearchByIDReq" +
       "uest\022\013\n\003SKU\030\001 \001(\t2S\n\tinventory\022F\n\nsearch" +
       "ByID\022\034.inventory.SearchByIDRequest\032\032.inv" +

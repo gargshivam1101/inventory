@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
   
-  public static void readData() {
+  public static Map<String, Map<String, String>> readData() {
     try {
       FileInputStream excelFile = new FileInputStream(new File("tf02930030.xltm"));
       Workbook workbook = new XSSFWorkbook(excelFile);
@@ -75,8 +75,10 @@ public class ExcelUtils {
         Map<String, String> rowData = entry.getValue();
         System.out.println("key: " + uniqueKey + " and value: " + rowData);
       }
+      return excelData;
     } catch (Exception e) {
       e.printStackTrace();
+      return null;
     }
   }
   

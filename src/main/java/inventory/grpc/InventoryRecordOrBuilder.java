@@ -58,14 +58,14 @@ public interface InventoryRecordOrBuilder extends
       getUNITBytes();
 
   /**
-   * <code>int32 QTY = 6;</code>
+   * <code>float QTY = 6;</code>
    */
-  int getQTY();
+  float getQTY();
 
   /**
-   * <code>int32 REORDER_QTY = 7;</code>
+   * <code>float REORDER_QTY = 7;</code>
    */
-  int getREORDERQTY();
+  float getREORDERQTY();
 
   /**
    * <code>float COST = 8;</code>
