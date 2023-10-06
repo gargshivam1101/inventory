@@ -123,6 +123,38 @@ public final class inventoryGrpc {
      return getSearchInRangeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<inventory.grpc.DistributionRequest,
+      inventory.grpc.PercentileValue> getGetDistributionMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getDistribution",
+      requestType = inventory.grpc.DistributionRequest.class,
+      responseType = inventory.grpc.PercentileValue.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<inventory.grpc.DistributionRequest,
+      inventory.grpc.PercentileValue> getGetDistributionMethod() {
+    io.grpc.MethodDescriptor<inventory.grpc.DistributionRequest, inventory.grpc.PercentileValue> getGetDistributionMethod;
+    if ((getGetDistributionMethod = inventoryGrpc.getGetDistributionMethod) == null) {
+      synchronized (inventoryGrpc.class) {
+        if ((getGetDistributionMethod = inventoryGrpc.getGetDistributionMethod) == null) {
+          inventoryGrpc.getGetDistributionMethod = getGetDistributionMethod = 
+              io.grpc.MethodDescriptor.<inventory.grpc.DistributionRequest, inventory.grpc.PercentileValue>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "inventory.inventory", "getDistribution"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.DistributionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.PercentileValue.getDefaultInstance()))
+                  .setSchemaDescriptor(new inventoryMethodDescriptorSupplier("getDistribution"))
+                  .build();
+          }
+        }
+     }
+     return getGetDistributionMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -171,6 +203,13 @@ public final class inventoryGrpc {
       asyncUnimplementedUnaryCall(getSearchInRangeMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getDistribution(inventory.grpc.DistributionRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.PercentileValue> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetDistributionMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -194,6 +233,13 @@ public final class inventoryGrpc {
                 inventory.grpc.SearchInRangeRequest,
                 inventory.grpc.InventoryRecords>(
                   this, METHODID_SEARCH_IN_RANGE)))
+          .addMethod(
+            getGetDistributionMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                inventory.grpc.DistributionRequest,
+                inventory.grpc.PercentileValue>(
+                  this, METHODID_GET_DISTRIBUTION)))
           .build();
     }
   }
@@ -239,6 +285,14 @@ public final class inventoryGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSearchInRangeMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getDistribution(inventory.grpc.DistributionRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.PercentileValue> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetDistributionMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -278,6 +332,13 @@ public final class inventoryGrpc {
     public inventory.grpc.InventoryRecords searchInRange(inventory.grpc.SearchInRangeRequest request) {
       return blockingUnaryCall(
           getChannel(), getSearchInRangeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public inventory.grpc.PercentileValue getDistribution(inventory.grpc.DistributionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getGetDistributionMethod(), getCallOptions(), request);
     }
   }
 
@@ -322,11 +383,20 @@ public final class inventoryGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSearchInRangeMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<inventory.grpc.PercentileValue> getDistribution(
+        inventory.grpc.DistributionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetDistributionMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEARCH_BY_ID = 0;
   private static final int METHODID_SEARCH = 1;
   private static final int METHODID_SEARCH_IN_RANGE = 2;
+  private static final int METHODID_GET_DISTRIBUTION = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -356,6 +426,10 @@ public final class inventoryGrpc {
         case METHODID_SEARCH_IN_RANGE:
           serviceImpl.searchInRange((inventory.grpc.SearchInRangeRequest) request,
               (io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords>) responseObserver);
+          break;
+        case METHODID_GET_DISTRIBUTION:
+          serviceImpl.getDistribution((inventory.grpc.DistributionRequest) request,
+              (io.grpc.stub.StreamObserver<inventory.grpc.PercentileValue>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -421,6 +495,7 @@ public final class inventoryGrpc {
               .addMethod(getSearchByIDMethod())
               .addMethod(getSearchMethod())
               .addMethod(getSearchInRangeMethod())
+              .addMethod(getGetDistributionMethod())
               .build();
         }
       }

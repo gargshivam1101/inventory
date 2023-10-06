@@ -23,6 +23,10 @@ message InventoryRecords {
 	repeated InventoryRecord records = 1;
 }
 
+message PercentileValue {
+	float percentile_value = 1;
+}
+
 message SearchByIDRequest {
     string SKU = 1;
 }
@@ -38,8 +42,14 @@ message SearchInRangeRequest {
 	string Key_Value_end = 3;
 }
 
+message DistributionRequest {
+	string Key_Name = 1;
+	float percentile = 2;
+}
+
 service inventory {
 	rpc searchByID(SearchByIDRequest) returns (InventoryRecord);
 	rpc search(SearchRequest) returns (InventoryRecords);
 	rpc searchInRange(SearchInRangeRequest) returns (InventoryRecords);
+	rpc getDistribution(DistributionRequest) returns (PercentileValue);
 }

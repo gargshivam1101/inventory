@@ -3,8 +3,11 @@ package inventory.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.math3.stat.descriptive.rank.Percentile;
+import inventory.grpc.DistributionRequest;
 import inventory.grpc.InventoryRecord;
 import inventory.grpc.InventoryRecords;
+import inventory.grpc.PercentileValue;
 import inventory.grpc.SearchByIDRequest;
 import inventory.grpc.SearchInRangeRequest;
 import inventory.grpc.SearchRequest;
@@ -72,12 +75,10 @@ public class InventoryService extends inventoryImplBase {
   }
   
   
-  
   @Override
   public void searchInRange(SearchInRangeRequest request,
       StreamObserver<InventoryRecords> responseObserver) {
     System.out.println("Search in range called according to key name " + request.getKeyName());
-    
     
     InventoryRecords.Builder resp = InventoryRecords.newBuilder();
     Map<String, Map<String, String>> data = ExcelUtils.readData();
@@ -115,4 +116,38 @@ public class InventoryService extends inventoryImplBase {
     responseObserver.onNext(resp.build());
     responseObserver.onCompleted();
   }
+  
+  
+  
+  @Override
+  public void getDistribution(DistributionRequest request,
+      StreamObserver<PercentileValue> responseObserver) {
+    System.out.println("Get distribution called according to key name " + request.getKeyName());
+    
+    PercentileValue.Builder resp = PercentileValue.newBuilder();
+    Map<String, Map<String, String>> data = ExcelUtils.readData();
+    
+    // store whole data of that key name in a list
+    List<Float> dataOfKey = new ArrayList<Float>();
+    
+    for (Map.Entry<String, Map<String, String>> entry : data.entrySet()) {
+      try {
+        Map<String, String> rowData = entry.getValue();
+        String valueAsString = rowData.get(request.getKeyName());
+        float valueAsFloat = Float.parseFloat(valueAsString);
+        dataOfKey.add(valueAsFloat);
+      } catch (Exception e) {
+        System.out.println("The key selected doesnt have all values in correct format");
+      }
+    }
+    double percentile = request.getPercentile();
+    double[] arrayOfData = dataOfKey.stream().mapToDouble(Float::doubleValue).toArray();
+    Percentile percentileCalculator = new Percentile(percentile);
+    
+    double percentileValue = percentileCalculator.evaluate(arrayOfData, percentile);
+    resp.setPercentileValue((float) percentileValue);
+    responseObserver.onNext(resp.build());
+    responseObserver.onCompleted();
+  }
+  
 }
