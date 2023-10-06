@@ -59,6 +59,38 @@ public final class inventoryGrpc {
      return getSearchByIDMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<inventory.grpc.SearchRequest,
+      inventory.grpc.InventoryRecords> getSearchMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "search",
+      requestType = inventory.grpc.SearchRequest.class,
+      responseType = inventory.grpc.InventoryRecords.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<inventory.grpc.SearchRequest,
+      inventory.grpc.InventoryRecords> getSearchMethod() {
+    io.grpc.MethodDescriptor<inventory.grpc.SearchRequest, inventory.grpc.InventoryRecords> getSearchMethod;
+    if ((getSearchMethod = inventoryGrpc.getSearchMethod) == null) {
+      synchronized (inventoryGrpc.class) {
+        if ((getSearchMethod = inventoryGrpc.getSearchMethod) == null) {
+          inventoryGrpc.getSearchMethod = getSearchMethod = 
+              io.grpc.MethodDescriptor.<inventory.grpc.SearchRequest, inventory.grpc.InventoryRecords>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "inventory.inventory", "search"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.SearchRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.InventoryRecords.getDefaultInstance()))
+                  .setSchemaDescriptor(new inventoryMethodDescriptorSupplier("search"))
+                  .build();
+          }
+        }
+     }
+     return getSearchMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +125,13 @@ public final class inventoryGrpc {
       asyncUnimplementedUnaryCall(getSearchByIDMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void search(inventory.grpc.SearchRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords> responseObserver) {
+      asyncUnimplementedUnaryCall(getSearchMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +141,13 @@ public final class inventoryGrpc {
                 inventory.grpc.SearchByIDRequest,
                 inventory.grpc.InventoryRecord>(
                   this, METHODID_SEARCH_BY_ID)))
+          .addMethod(
+            getSearchMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                inventory.grpc.SearchRequest,
+                inventory.grpc.InventoryRecords>(
+                  this, METHODID_SEARCH)))
           .build();
     }
   }
@@ -131,6 +177,14 @@ public final class inventoryGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSearchByIDMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void search(inventory.grpc.SearchRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSearchMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +210,13 @@ public final class inventoryGrpc {
     public inventory.grpc.InventoryRecord searchByID(inventory.grpc.SearchByIDRequest request) {
       return blockingUnaryCall(
           getChannel(), getSearchByIDMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public inventory.grpc.InventoryRecords search(inventory.grpc.SearchRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getSearchMethod(), getCallOptions(), request);
     }
   }
 
@@ -184,9 +245,18 @@ public final class inventoryGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSearchByIDMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<inventory.grpc.InventoryRecords> search(
+        inventory.grpc.SearchRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSearchMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEARCH_BY_ID = 0;
+  private static final int METHODID_SEARCH = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -208,6 +278,10 @@ public final class inventoryGrpc {
         case METHODID_SEARCH_BY_ID:
           serviceImpl.searchByID((inventory.grpc.SearchByIDRequest) request,
               (io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecord>) responseObserver);
+          break;
+        case METHODID_SEARCH:
+          serviceImpl.search((inventory.grpc.SearchRequest) request,
+              (io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +345,7 @@ public final class inventoryGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new inventoryFileDescriptorSupplier())
               .addMethod(getSearchByIDMethod())
+              .addMethod(getSearchMethod())
               .build();
         }
       }

@@ -19,10 +19,20 @@ message InventoryRecord {
     bool REORDER = 10;
 }
 
+message InventoryRecords {
+	repeated InventoryRecord records = 1;
+}
+
 message SearchByIDRequest {
     string SKU = 1;
 }
 
+message SearchRequest {
+	string Key_Name = 1;
+	string Key_Value = 2;
+}
+
 service inventory {
 	rpc searchByID(SearchByIDRequest) returns (InventoryRecord);
+	rpc search(SearchRequest) returns (InventoryRecords);
 }

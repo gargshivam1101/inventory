@@ -20,10 +20,20 @@ public final class Inventory {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inventory_InventoryRecord_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inventory_InventoryRecords_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inventory_InventoryRecords_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_inventory_SearchByIDRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inventory_SearchByIDRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inventory_SearchRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inventory_SearchRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -38,11 +48,16 @@ public final class Inventory {
       "ON\030\002 \001(\t\022\013\n\003BIN\030\003 \001(\t\022\020\n\010LOCATION\030\004 \001(\t\022" +
       "\014\n\004UNIT\030\005 \001(\t\022\013\n\003QTY\030\006 \001(\002\022\023\n\013REORDER_QT" +
       "Y\030\007 \001(\002\022\014\n\004COST\030\010 \001(\002\022\027\n\017INVENTORY_VALUE" +
-      "\030\t \001(\002\022\017\n\007REORDER\030\n \001(\010\" \n\021SearchByIDReq" +
-      "uest\022\013\n\003SKU\030\001 \001(\t2S\n\tinventory\022F\n\nsearch" +
+      "\030\t \001(\002\022\017\n\007REORDER\030\n \001(\010\"?\n\020InventoryReco" +
+      "rds\022+\n\007records\030\001 \003(\0132\032.inventory.Invento" +
+      "ryRecord\" \n\021SearchByIDRequest\022\013\n\003SKU\030\001 \001" +
+      "(\t\"4\n\rSearchRequest\022\020\n\010Key_Name\030\001 \001(\t\022\021\n" +
+      "\tKey_Value\030\002 \001(\t2\224\001\n\tinventory\022F\n\nsearch" +
       "ByID\022\034.inventory.SearchByIDRequest\032\032.inv" +
-      "entory.InventoryRecordB\035\n\016inventory.grpc" +
-      "B\tInventoryP\001b\006proto3"
+      "entory.InventoryRecord\022?\n\006search\022\030.inven" +
+      "tory.SearchRequest\032\033.inventory.Inventory" +
+      "RecordsB\035\n\016inventory.grpcB\tInventoryP\001b\006" +
+      "proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -62,12 +77,24 @@ public final class Inventory {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_InventoryRecord_descriptor,
         new java.lang.String[] { "SKU", "DESCRIPTION", "BIN", "LOCATION", "UNIT", "QTY", "REORDERQTY", "COST", "INVENTORYVALUE", "REORDER", });
-    internal_static_inventory_SearchByIDRequest_descriptor =
+    internal_static_inventory_InventoryRecords_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_inventory_InventoryRecords_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inventory_InventoryRecords_descriptor,
+        new java.lang.String[] { "Records", });
+    internal_static_inventory_SearchByIDRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_inventory_SearchByIDRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_SearchByIDRequest_descriptor,
         new java.lang.String[] { "SKU", });
+    internal_static_inventory_SearchRequest_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_inventory_SearchRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inventory_SearchRequest_descriptor,
+        new java.lang.String[] { "KeyName", "KeyValue", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
