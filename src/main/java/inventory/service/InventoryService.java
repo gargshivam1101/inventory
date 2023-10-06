@@ -6,6 +6,7 @@ import java.util.Map;
 import inventory.grpc.InventoryRecord;
 import inventory.grpc.InventoryRecords;
 import inventory.grpc.SearchByIDRequest;
+import inventory.grpc.SearchInRangeRequest;
 import inventory.grpc.SearchRequest;
 import inventory.grpc.inventoryGrpc.inventoryImplBase;
 import inventory.utils.ExcelUtils;
@@ -46,7 +47,6 @@ public class InventoryService extends inventoryImplBase {
     Map<String, Map<String, String>> data = ExcelUtils.readData();
     List<InventoryRecord> respList = new ArrayList<InventoryRecord>();
     for (Map.Entry<String, Map<String, String>> entry : data.entrySet()) {
-      String uniqueKey = entry.getKey();
       Map<String, String> rowData = entry.getValue();
       
       if (request.getKeyValue().equalsIgnoreCase(rowData.get(request.getKeyName()))) {
@@ -64,6 +64,51 @@ public class InventoryService extends inventoryImplBase {
             .setREORDER("1.0".equalsIgnoreCase(rowData.get("REORDER")))//
             .build();
         respList.add(inv);
+      }
+    }
+    resp.addAllRecords(respList);
+    responseObserver.onNext(resp.build());
+    responseObserver.onCompleted();
+  }
+  
+  
+  
+  @Override
+  public void searchInRange(SearchInRangeRequest request,
+      StreamObserver<InventoryRecords> responseObserver) {
+    System.out.println("Search in range called according to key name " + request.getKeyName());
+    
+    
+    InventoryRecords.Builder resp = InventoryRecords.newBuilder();
+    Map<String, Map<String, String>> data = ExcelUtils.readData();
+    List<InventoryRecord> respList = new ArrayList<InventoryRecord>();
+    for (Map.Entry<String, Map<String, String>> entry : data.entrySet()) {
+      Map<String, String> rowData = entry.getValue();
+      
+      try {
+        float actualValue = Float.parseFloat(rowData.get(request.getKeyName()));
+        float lowerLimit = Float.parseFloat(request.getKeyValueStart());
+        float upperLimit = Float.parseFloat(request.getKeyValueEnd());
+        
+        
+        if (lowerLimit <= actualValue && actualValue <= upperLimit) {
+          // this is the InventoryRecord which should be a part of our resp
+          InventoryRecord inv = InventoryRecord.newBuilder()//
+              .setSKU(rowData.get("SKU"))//
+              .setDESCRIPTION(rowData.get("DESCRIPTION"))//
+              .setBIN(rowData.get("BIN #"))//
+              .setLOCATION(rowData.get("LOCATION"))//
+              .setUNIT(rowData.get("UNIT"))//
+              .setQTY(Float.parseFloat(rowData.get("QTY")))//
+              .setREORDERQTY(Float.parseFloat(rowData.get("REORDER QTY")))//
+              .setCOST(Float.parseFloat(rowData.get("COST")))//
+              .setINVENTORYVALUE(Float.parseFloat(rowData.get("INVENTORY VALUE")))//
+              .setREORDER("1.0".equalsIgnoreCase(rowData.get("REORDER")))//
+              .build();
+          respList.add(inv);
+        }
+      } catch (Exception e) {
+        System.out.println("Incorrect input");
       }
     }
     resp.addAllRecords(respList);

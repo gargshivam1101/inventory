@@ -32,7 +32,14 @@ message SearchRequest {
 	string Key_Value = 2;
 }
 
+message SearchInRangeRequest {
+	string Key_Name = 1;
+	string Key_Value_start = 2;
+	string Key_Value_end = 3;
+}
+
 service inventory {
 	rpc searchByID(SearchByIDRequest) returns (InventoryRecord);
 	rpc search(SearchRequest) returns (InventoryRecords);
+	rpc searchInRange(SearchInRangeRequest) returns (InventoryRecords);
 }

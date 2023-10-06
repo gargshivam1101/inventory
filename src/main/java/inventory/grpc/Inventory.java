@@ -34,6 +34,11 @@ public final class Inventory {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inventory_SearchRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inventory_SearchInRangeRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inventory_SearchInRangeRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -52,12 +57,16 @@ public final class Inventory {
       "rds\022+\n\007records\030\001 \003(\0132\032.inventory.Invento" +
       "ryRecord\" \n\021SearchByIDRequest\022\013\n\003SKU\030\001 \001" +
       "(\t\"4\n\rSearchRequest\022\020\n\010Key_Name\030\001 \001(\t\022\021\n" +
-      "\tKey_Value\030\002 \001(\t2\224\001\n\tinventory\022F\n\nsearch" +
-      "ByID\022\034.inventory.SearchByIDRequest\032\032.inv" +
-      "entory.InventoryRecord\022?\n\006search\022\030.inven" +
-      "tory.SearchRequest\032\033.inventory.Inventory" +
-      "RecordsB\035\n\016inventory.grpcB\tInventoryP\001b\006" +
-      "proto3"
+      "\tKey_Value\030\002 \001(\t\"X\n\024SearchInRangeRequest" +
+      "\022\020\n\010Key_Name\030\001 \001(\t\022\027\n\017Key_Value_start\030\002 " +
+      "\001(\t\022\025\n\rKey_Value_end\030\003 \001(\t2\343\001\n\tinventory" +
+      "\022F\n\nsearchByID\022\034.inventory.SearchByIDReq" +
+      "uest\032\032.inventory.InventoryRecord\022?\n\006sear" +
+      "ch\022\030.inventory.SearchRequest\032\033.inventory" +
+      ".InventoryRecords\022M\n\rsearchInRange\022\037.inv" +
+      "entory.SearchInRangeRequest\032\033.inventory." +
+      "InventoryRecordsB\035\n\016inventory.grpcB\tInve" +
+      "ntoryP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -95,6 +104,12 @@ public final class Inventory {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_SearchRequest_descriptor,
         new java.lang.String[] { "KeyName", "KeyValue", });
+    internal_static_inventory_SearchInRangeRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_inventory_SearchInRangeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inventory_SearchInRangeRequest_descriptor,
+        new java.lang.String[] { "KeyName", "KeyValueStart", "KeyValueEnd", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

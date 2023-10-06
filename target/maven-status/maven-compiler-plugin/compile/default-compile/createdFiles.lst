@@ -1,5 +1,7 @@
+inventory\grpc\SearchInRangeRequestOrBuilder.class
 inventory\grpc\InventoryRecord$Builder.class
 inventory\grpc\InventoryRecord.class
+inventory\grpc\SearchInRangeRequest$1.class
 inventory\grpc\InventoryRecords$Builder.class
 inventory\grpc\SearchByIDRequest.class
 inventory\grpc\inventoryGrpc$inventoryFutureStub.class
@@ -22,12 +24,15 @@ inventory\server\GRPCServer.class
 inventory\grpc\Inventory.class
 inventory\grpc\SearchRequestOrBuilder.class
 inventory\grpc\Inventory$1.class
+inventory\grpc\SearchInRangeRequest$Builder.class
+inventory\client\SearchClient.class
 inventory\grpc\inventoryGrpc$inventoryStub.class
+inventory\grpc\SearchInRangeRequest.class
 inventory\grpc\inventoryGrpc.class
 inventory\grpc\InventoryRecordsOrBuilder.class
+inventory\client\SearchByIDClient.class
 inventory\grpc\InventoryRecords.class
 inventory\grpc\inventoryGrpc$MethodHandlers.class
 inventory\grpc\SearchByIDRequest$1.class
-inventory\client\GRPCClient.class
 inventory\grpc\InventoryRecord$1.class
 inventory\grpc\SearchRequest.class

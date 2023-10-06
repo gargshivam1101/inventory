@@ -91,6 +91,38 @@ public final class inventoryGrpc {
      return getSearchMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<inventory.grpc.SearchInRangeRequest,
+      inventory.grpc.InventoryRecords> getSearchInRangeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "searchInRange",
+      requestType = inventory.grpc.SearchInRangeRequest.class,
+      responseType = inventory.grpc.InventoryRecords.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<inventory.grpc.SearchInRangeRequest,
+      inventory.grpc.InventoryRecords> getSearchInRangeMethod() {
+    io.grpc.MethodDescriptor<inventory.grpc.SearchInRangeRequest, inventory.grpc.InventoryRecords> getSearchInRangeMethod;
+    if ((getSearchInRangeMethod = inventoryGrpc.getSearchInRangeMethod) == null) {
+      synchronized (inventoryGrpc.class) {
+        if ((getSearchInRangeMethod = inventoryGrpc.getSearchInRangeMethod) == null) {
+          inventoryGrpc.getSearchInRangeMethod = getSearchInRangeMethod = 
+              io.grpc.MethodDescriptor.<inventory.grpc.SearchInRangeRequest, inventory.grpc.InventoryRecords>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "inventory.inventory", "searchInRange"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.SearchInRangeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.InventoryRecords.getDefaultInstance()))
+                  .setSchemaDescriptor(new inventoryMethodDescriptorSupplier("searchInRange"))
+                  .build();
+          }
+        }
+     }
+     return getSearchInRangeMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -132,6 +164,13 @@ public final class inventoryGrpc {
       asyncUnimplementedUnaryCall(getSearchMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void searchInRange(inventory.grpc.SearchInRangeRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords> responseObserver) {
+      asyncUnimplementedUnaryCall(getSearchInRangeMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -148,6 +187,13 @@ public final class inventoryGrpc {
                 inventory.grpc.SearchRequest,
                 inventory.grpc.InventoryRecords>(
                   this, METHODID_SEARCH)))
+          .addMethod(
+            getSearchInRangeMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                inventory.grpc.SearchInRangeRequest,
+                inventory.grpc.InventoryRecords>(
+                  this, METHODID_SEARCH_IN_RANGE)))
           .build();
     }
   }
@@ -185,6 +231,14 @@ public final class inventoryGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void searchInRange(inventory.grpc.SearchInRangeRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSearchInRangeMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -217,6 +271,13 @@ public final class inventoryGrpc {
     public inventory.grpc.InventoryRecords search(inventory.grpc.SearchRequest request) {
       return blockingUnaryCall(
           getChannel(), getSearchMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public inventory.grpc.InventoryRecords searchInRange(inventory.grpc.SearchInRangeRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getSearchInRangeMethod(), getCallOptions(), request);
     }
   }
 
@@ -253,10 +314,19 @@ public final class inventoryGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<inventory.grpc.InventoryRecords> searchInRange(
+        inventory.grpc.SearchInRangeRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSearchInRangeMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEARCH_BY_ID = 0;
   private static final int METHODID_SEARCH = 1;
+  private static final int METHODID_SEARCH_IN_RANGE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -281,6 +351,10 @@ public final class inventoryGrpc {
           break;
         case METHODID_SEARCH:
           serviceImpl.search((inventory.grpc.SearchRequest) request,
+              (io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords>) responseObserver);
+          break;
+        case METHODID_SEARCH_IN_RANGE:
+          serviceImpl.searchInRange((inventory.grpc.SearchInRangeRequest) request,
               (io.grpc.stub.StreamObserver<inventory.grpc.InventoryRecords>) responseObserver);
           break;
         default:
@@ -346,6 +420,7 @@ public final class inventoryGrpc {
               .setSchemaDescriptor(new inventoryFileDescriptorSupplier())
               .addMethod(getSearchByIDMethod())
               .addMethod(getSearchMethod())
+              .addMethod(getSearchInRangeMethod())
               .build();
         }
       }
