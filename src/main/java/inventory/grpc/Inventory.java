@@ -30,6 +30,11 @@ public final class Inventory {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inventory_PercentileValue_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inventory_UpdateResp_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inventory_UpdateResp_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_inventory_SearchByIDRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -49,6 +54,11 @@ public final class Inventory {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inventory_DistributionRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inventory_UpdateRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inventory_UpdateRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -66,21 +76,26 @@ public final class Inventory {
       "\030\t \001(\002\022\017\n\007REORDER\030\n \001(\010\"?\n\020InventoryReco" +
       "rds\022+\n\007records\030\001 \003(\0132\032.inventory.Invento" +
       "ryRecord\"+\n\017PercentileValue\022\030\n\020percentil" +
-      "e_value\030\001 \001(\002\" \n\021SearchByIDRequest\022\013\n\003SK" +
-      "U\030\001 \001(\t\"4\n\rSearchRequest\022\020\n\010Key_Name\030\001 \001" +
-      "(\t\022\021\n\tKey_Value\030\002 \001(\t\"X\n\024SearchInRangeRe" +
-      "quest\022\020\n\010Key_Name\030\001 \001(\t\022\027\n\017Key_Value_sta" +
-      "rt\030\002 \001(\t\022\025\n\rKey_Value_end\030\003 \001(\t\";\n\023Distr" +
-      "ibutionRequest\022\020\n\010Key_Name\030\001 \001(\t\022\022\n\nperc" +
-      "entile\030\002 \001(\0022\262\002\n\tinventory\022F\n\nsearchByID" +
-      "\022\034.inventory.SearchByIDRequest\032\032.invento" +
-      "ry.InventoryRecord\022?\n\006search\022\030.inventory" +
-      ".SearchRequest\032\033.inventory.InventoryReco" +
-      "rds\022M\n\rsearchInRange\022\037.inventory.SearchI" +
-      "nRangeRequest\032\033.inventory.InventoryRecor" +
-      "ds\022M\n\017getDistribution\022\036.inventory.Distri" +
-      "butionRequest\032\032.inventory.PercentileValu" +
-      "eB\035\n\016inventory.grpcB\tInventoryP\001b\006proto3"
+      "e_value\030\001 \001(\002\"\035\n\nUpdateResp\022\017\n\007updated\030\001" +
+      " \001(\010\" \n\021SearchByIDRequest\022\013\n\003SKU\030\001 \001(\t\"4" +
+      "\n\rSearchRequest\022\020\n\010Key_Name\030\001 \001(\t\022\021\n\tKey" +
+      "_Value\030\002 \001(\t\"X\n\024SearchInRangeRequest\022\020\n\010" +
+      "Key_Name\030\001 \001(\t\022\027\n\017Key_Value_start\030\002 \001(\t\022" +
+      "\025\n\rKey_Value_end\030\003 \001(\t\";\n\023DistributionRe" +
+      "quest\022\020\n\010Key_Name\030\001 \001(\t\022\022\n\npercentile\030\002 " +
+      "\001(\002\"[\n\rUpdateRequest\022\020\n\010Key_Name\030\001 \001(\t\022\021" +
+      "\n\tKey_Value\030\002 \001(\t\022\020\n\010Val_Name\030\003 \001(\t\022\023\n\013V" +
+      "al_Val_New\030\004 \001(\t2\355\002\n\tinventory\022F\n\nsearch" +
+      "ByID\022\034.inventory.SearchByIDRequest\032\032.inv" +
+      "entory.InventoryRecord\022?\n\006search\022\030.inven" +
+      "tory.SearchRequest\032\033.inventory.Inventory" +
+      "Records\022M\n\rsearchInRange\022\037.inventory.Sea" +
+      "rchInRangeRequest\032\033.inventory.InventoryR" +
+      "ecords\022M\n\017getDistribution\022\036.inventory.Di" +
+      "stributionRequest\032\032.inventory.Percentile" +
+      "Value\0229\n\006update\022\030.inventory.UpdateReques" +
+      "t\032\025.inventory.UpdateRespB\035\n\016inventory.gr" +
+      "pcB\tInventoryP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -112,30 +127,42 @@ public final class Inventory {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_PercentileValue_descriptor,
         new java.lang.String[] { "PercentileValue", });
-    internal_static_inventory_SearchByIDRequest_descriptor =
+    internal_static_inventory_UpdateResp_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_inventory_UpdateResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inventory_UpdateResp_descriptor,
+        new java.lang.String[] { "Updated", });
+    internal_static_inventory_SearchByIDRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_inventory_SearchByIDRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_SearchByIDRequest_descriptor,
         new java.lang.String[] { "SKU", });
     internal_static_inventory_SearchRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_inventory_SearchRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_SearchRequest_descriptor,
         new java.lang.String[] { "KeyName", "KeyValue", });
     internal_static_inventory_SearchInRangeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_inventory_SearchInRangeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_SearchInRangeRequest_descriptor,
         new java.lang.String[] { "KeyName", "KeyValueStart", "KeyValueEnd", });
     internal_static_inventory_DistributionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_inventory_DistributionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inventory_DistributionRequest_descriptor,
         new java.lang.String[] { "KeyName", "Percentile", });
+    internal_static_inventory_UpdateRequest_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_inventory_UpdateRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inventory_UpdateRequest_descriptor,
+        new java.lang.String[] { "KeyName", "KeyValue", "ValName", "ValValNew", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

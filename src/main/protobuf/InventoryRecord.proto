@@ -27,6 +27,10 @@ message PercentileValue {
 	float percentile_value = 1;
 }
 
+message UpdateResp {
+	bool updated = 1;
+}
+
 message SearchByIDRequest {
     string SKU = 1;
 }
@@ -47,9 +51,17 @@ message DistributionRequest {
 	float percentile = 2;
 }
 
+message UpdateRequest {
+	string Key_Name = 1;
+	string Key_Value = 2;
+	string Val_Name = 3;
+	string Val_Val_New = 4;
+}
+
 service inventory {
 	rpc searchByID(SearchByIDRequest) returns (InventoryRecord);
 	rpc search(SearchRequest) returns (InventoryRecords);
 	rpc searchInRange(SearchInRangeRequest) returns (InventoryRecords);
 	rpc getDistribution(DistributionRequest) returns (PercentileValue);
+	rpc update(UpdateRequest) returns (UpdateResp);
 }

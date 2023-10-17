@@ -11,6 +11,8 @@ import inventory.grpc.PercentileValue;
 import inventory.grpc.SearchByIDRequest;
 import inventory.grpc.SearchInRangeRequest;
 import inventory.grpc.SearchRequest;
+import inventory.grpc.UpdateRequest;
+import inventory.grpc.UpdateResp;
 import inventory.grpc.inventoryGrpc.inventoryImplBase;
 import inventory.utils.ExcelUtils;
 import io.grpc.stub.StreamObserver;
@@ -118,7 +120,6 @@ public class InventoryService extends inventoryImplBase {
   }
   
   
-  
   @Override
   public void getDistribution(DistributionRequest request,
       StreamObserver<PercentileValue> responseObserver) {
@@ -150,4 +151,18 @@ public class InventoryService extends inventoryImplBase {
     responseObserver.onCompleted();
   }
   
+  
+  
+  @Override
+  public void update(UpdateRequest request, StreamObserver<UpdateResp> responseObserver) {
+    System.out.println("Update fn called according to key name " + request.getKeyName());
+    
+    // find the rowIndex by matching Key_Name and Key_Value
+    Integer rowIndex = ExcelUtils.getRowIndex(request.getKeyName(), request.getKeyValue());
+    // find the columnIndex according to the value of the Val_Name
+    Integer columnIndex = ExcelUtils.getColumnIndex(request.getValName());
+    
+    // update the value of the columnIndex and rowIndex as Val_Val_New
+    ExcelUtils.update(rowIndex, columnIndex, request.getValValNew());
+  }
 }

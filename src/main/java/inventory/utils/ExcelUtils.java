@@ -2,9 +2,11 @@ package inventory.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
@@ -99,6 +101,85 @@ public class ExcelUtils {
     } catch (Exception e) {
       // TODO: LOCATION column not working
       return "";
+    }
+  }
+  
+  public static Integer getRowIndex(String keyName, String keyValue) {
+    if (!keyName.equalsIgnoreCase("SKU")) {
+      System.out.println("Unique identifier should be provided for Key_Name");
+      return null;
+    }
+    
+    try {
+      FileInputStream excelFile = new FileInputStream(new File("tf02930030.xltm"));
+      Workbook workbook = new XSSFWorkbook(excelFile);
+      Sheet sheet = workbook.getSheetAt(0);
+      
+      int rowIndex = -1;
+      int columnIndex = 1; // Column B is the SKU which is the unique identifier
+      
+      for (Row row : sheet) {
+        Cell cell = row.getCell(columnIndex);
+        
+        if (cell != null && cell.getCellType() == CellType.STRING
+            && cell.getStringCellValue().equals(keyValue)) {
+          rowIndex = row.getRowNum();
+          break;
+        }
+      }
+      workbook.close();
+      return rowIndex;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+  
+  public static Integer getColumnIndex(String valueName) {
+    switch (valueName) {
+      case "SKU":
+        return 1;
+      case "DESCRIPTION":
+        return 2;
+      case "BIN":
+        return 3;
+      case "LOCATION":
+        return 4;
+      case "UNIT":
+        return 5;
+      case "QTY":
+        return 6;
+      case "REORDER_QTY":
+        return 7;
+      case "COST":
+        return 8;
+      case "INVENTORY_VALUE":
+        return 9;
+      case "REORDER":
+        return 10;
+      default:
+        return -1;
+    }
+  }
+  
+  public static void update(Integer rowIndex, Integer columnIndex, String valValNew) {
+    try {
+      FileInputStream excelFile = new FileInputStream(new File("tf02930030.xltm"));
+      Workbook workbook = new XSSFWorkbook(excelFile);
+      Sheet sheet = workbook.getSheetAt(0);
+      
+      Row row = sheet.getRow(rowIndex);
+      Cell cell = row.getCell(columnIndex);
+      
+      cell.setCellValue(valValNew);
+      
+      FileOutputStream outputStream = new FileOutputStream("tf02930030.xltm");
+      workbook.write(outputStream);
+      outputStream.close();
+      
+      workbook.close();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 }

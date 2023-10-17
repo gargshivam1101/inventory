@@ -155,6 +155,38 @@ public final class inventoryGrpc {
      return getGetDistributionMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<inventory.grpc.UpdateRequest,
+      inventory.grpc.UpdateResp> getUpdateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "update",
+      requestType = inventory.grpc.UpdateRequest.class,
+      responseType = inventory.grpc.UpdateResp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<inventory.grpc.UpdateRequest,
+      inventory.grpc.UpdateResp> getUpdateMethod() {
+    io.grpc.MethodDescriptor<inventory.grpc.UpdateRequest, inventory.grpc.UpdateResp> getUpdateMethod;
+    if ((getUpdateMethod = inventoryGrpc.getUpdateMethod) == null) {
+      synchronized (inventoryGrpc.class) {
+        if ((getUpdateMethod = inventoryGrpc.getUpdateMethod) == null) {
+          inventoryGrpc.getUpdateMethod = getUpdateMethod = 
+              io.grpc.MethodDescriptor.<inventory.grpc.UpdateRequest, inventory.grpc.UpdateResp>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "inventory.inventory", "update"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.UpdateRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  inventory.grpc.UpdateResp.getDefaultInstance()))
+                  .setSchemaDescriptor(new inventoryMethodDescriptorSupplier("update"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -210,6 +242,13 @@ public final class inventoryGrpc {
       asyncUnimplementedUnaryCall(getGetDistributionMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void update(inventory.grpc.UpdateRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.UpdateResp> responseObserver) {
+      asyncUnimplementedUnaryCall(getUpdateMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -240,6 +279,13 @@ public final class inventoryGrpc {
                 inventory.grpc.DistributionRequest,
                 inventory.grpc.PercentileValue>(
                   this, METHODID_GET_DISTRIBUTION)))
+          .addMethod(
+            getUpdateMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                inventory.grpc.UpdateRequest,
+                inventory.grpc.UpdateResp>(
+                  this, METHODID_UPDATE)))
           .build();
     }
   }
@@ -293,6 +339,14 @@ public final class inventoryGrpc {
       asyncUnaryCall(
           getChannel().newCall(getGetDistributionMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void update(inventory.grpc.UpdateRequest request,
+        io.grpc.stub.StreamObserver<inventory.grpc.UpdateResp> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -339,6 +393,13 @@ public final class inventoryGrpc {
     public inventory.grpc.PercentileValue getDistribution(inventory.grpc.DistributionRequest request) {
       return blockingUnaryCall(
           getChannel(), getGetDistributionMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public inventory.grpc.UpdateResp update(inventory.grpc.UpdateRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getUpdateMethod(), getCallOptions(), request);
     }
   }
 
@@ -391,12 +452,21 @@ public final class inventoryGrpc {
       return futureUnaryCall(
           getChannel().newCall(getGetDistributionMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<inventory.grpc.UpdateResp> update(
+        inventory.grpc.UpdateRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUpdateMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEARCH_BY_ID = 0;
   private static final int METHODID_SEARCH = 1;
   private static final int METHODID_SEARCH_IN_RANGE = 2;
   private static final int METHODID_GET_DISTRIBUTION = 3;
+  private static final int METHODID_UPDATE = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -430,6 +500,10 @@ public final class inventoryGrpc {
         case METHODID_GET_DISTRIBUTION:
           serviceImpl.getDistribution((inventory.grpc.DistributionRequest) request,
               (io.grpc.stub.StreamObserver<inventory.grpc.PercentileValue>) responseObserver);
+          break;
+        case METHODID_UPDATE:
+          serviceImpl.update((inventory.grpc.UpdateRequest) request,
+              (io.grpc.stub.StreamObserver<inventory.grpc.UpdateResp>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -496,6 +570,7 @@ public final class inventoryGrpc {
               .addMethod(getSearchMethod())
               .addMethod(getSearchInRangeMethod())
               .addMethod(getGetDistributionMethod())
+              .addMethod(getUpdateMethod())
               .build();
         }
       }
