@@ -12,7 +12,7 @@ public class GetDistributionClient {
   
   public static void main(String[] args) throws IOException, InterruptedException {
     ManagedChannel channel =
-        ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
+        ManagedChannelBuilder.forAddress("3.80.109.141", 9090).usePlaintext().build();
     
     inventoryBlockingStub inventoryStub = inventoryGrpc.newBlockingStub(channel);
     DistributionRequest request =

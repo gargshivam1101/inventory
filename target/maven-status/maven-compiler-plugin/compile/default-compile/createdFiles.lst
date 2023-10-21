@@ -22,6 +22,7 @@ inventory\grpc\UpdateRespOrBuilder.class
 inventory\client\SearchByIDClient.class
 inventory\grpc\SearchByIDRequest$1.class
 inventory\grpc\InventoryRecord$1.class
+inventory\client\UpdateClient.class
 inventory\grpc\InventoryRecord$Builder.class
 inventory\grpc\InventoryRecord.class
 inventory\grpc\SearchInRangeRequest$1.class
