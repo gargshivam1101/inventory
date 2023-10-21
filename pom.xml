@@ -23,7 +23,7 @@
 	</properties>
 	<build>
 		<defaultGoal>clean generate-sources compile install</defaultGoal>
-		<finalName>shop</finalName>
+		<finalName>inventory</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

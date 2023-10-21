@@ -64,19 +64,6 @@ public class ExcelUtils {
       }
       
       workbook.close();
-      
-      // to retrieve data for a specific row:
-      // Map<String, String> specificRow = excelData.get("UniqueKey");
-      
-      // To update a value in a specific row:
-      // specificRow.put("ColumnName", "NewValue");
-      
-      for (Map.Entry<String, Map<String, String>> entry : excelData.entrySet()) {
-        // iterate
-        String uniqueKey = entry.getKey();
-        Map<String, String> rowData = entry.getValue();
-        System.out.println("key: " + uniqueKey + " and value: " + rowData);
-      }
       return excelData;
     } catch (Exception e) {
       e.printStackTrace();
@@ -99,7 +86,6 @@ public class ExcelUtils {
           return "";
       }
     } catch (Exception e) {
-      // TODO: LOCATION column not working
       return "";
     }
   }
